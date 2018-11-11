@@ -57,15 +57,23 @@
     (set-row-style! header-row (create-cell-style! wb {:background (params :background),:font (params :font)}))
     (save-workbook! filename wb)))
 
-(defn gen-workbook! [branch]
- (let [att-data (get-attendance-data branch)
-       filename (str (str/lower-case (str/replace branch " " "-"))
-                     "-attendance.xlsx")]
-  (save-workbook! filename
-                  (create-workbook 
-                   "midweek" (gen-data (get-midweek-services att-data))
-                   "sundays" (gen-data (get-sunday-services att-data))
-                   "others"  (gen-data (get-other-services att-data))))))
+(defn gen-workbook! 
+  "Generates an Excel Spreadsheet with 3 tabs capturing attendance data for midweek services, sunday 
+   services and other services. You can provide a path to store the file(s) in" 
+  ([branch] (gen-workbook! "" branch)) 
+  ([path branch]
+   (let [att-data (get-attendance-data branch)
+         filename (str path (str/lower-case (str/replace branch " " "-"))
+                       "-attendance.xlsx")
+         _ (clojure.java.io/make-parents filename)]                                       
+     (println filename)   
+     (save-workbook! filename
+                     (create-workbook 
+                      "midweek" (gen-data (get-midweek-services att-data))
+                      "sundays" (gen-data (get-sunday-services att-data))
+                      "others"  (gen-data (get-other-services att-data)))))))
 
-(defn -main [& args]
- (map gen-workbook! args))
+(defn -main [path & args]
+  (println "Generating" (count args) "attendance sheets for the following branches" args)
+  (doseq [branch args] (gen-workbook! path branch)))
+
