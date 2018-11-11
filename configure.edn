@@ -1,0 +1,10 @@
+{:author "K. A. Bosompem"
+ :license "EPL"
+ :environment "DEV"
+ :version "0.1"
+ :attendance-url-root  "https://prod-51.westus.logic.azure.com/workflows/02f64ee944634919b9fa0f5385a5d405/triggers/manual/paths/invoke/branch/"
+ :attendance-url-suffix  "?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QMS99B1gzUenOnePQAVwBNPFWR2kx07EidMGhAtoYx4"
+ :columns [:MESSAGE_x0020_PREACHED :TYPE_x0020_OF_x0020_SERVICE :DATEOFSERVICENUMBER
+           :DATE_x0020_OF_x0020_SERVICE :NAME_x0020_OF_x0020_PREACHER :MESSAGE_x0020_TYPE
+           :ATTENDANCE :CHILDREN_x0020_UNDER_x0020_12]}        
+
