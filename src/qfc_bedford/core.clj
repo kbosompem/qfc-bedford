@@ -7,10 +7,13 @@
              [dk.ative.docjure.spreadsheet :refer :all]
              [clojure.java.io :as io]))          
 
+;- Load Configuration file
+(def env  (-> "config.edn" io/resource slurp edn/read-string))
+(def MAIL (env :mail))
 
-(def midweek-service #{"MIDWEEK SERVICE"})
-(def sunday-service #{" SUNDAY 1ST SERVICE"})
-(def sunday-and-midweek #{"MIDWEEK SERVICE" " SUNDAY 1ST SERVICE"})
+(def midweek-service     #{"MIDWEEK SERVICE"})
+(def sunday-service      #{" SUNDAY 1ST SERVICE"})
+(def sunday-and-midweek  #{"MIDWEEK SERVICE" " SUNDAY 1ST SERVICE"})
 
 (def config (edn/read-string (slurp "configure.edn")))
 (def attkeys (or (:columns config) []))
