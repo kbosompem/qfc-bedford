@@ -12,5 +12,5 @@ pom.xml.asc
 .xlsx
 .xls
 /resources/config.edn
-configure.edn
+/configure.edn
 /attendance
